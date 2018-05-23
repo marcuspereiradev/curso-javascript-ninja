@@ -45,7 +45,7 @@
         });
         console.log(result);
     }
-    sum(1,2,3,4,5,6,7,8,9,10);
+    sum(1,2,3,4,5,6,7,8,9,10,11);
 
     /*
     Mostre no console que a função acima funciona, invocando-a em 3 console.log
