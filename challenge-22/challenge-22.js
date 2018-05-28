@@ -1,4 +1,5 @@
 (function(){
+    'use strict';
     /*
     Crie dois objetos, que serão duas pessoas. Cada um deve ter as propriedades
     `name` e `lastName`, preenchidos com o nome e sobrenome da pessoa.
@@ -6,11 +7,11 @@
     var firstPeople = {
         name: 'Marcus',
         lastName: 'Pereira'
-    }
+    };
     var secondPeople = {
         name: 'Maria',
         lastName: 'Bouleana'
-    }
+    };
 
     /*
     Agora crie uma função chamada `getFullName` que retorne as propriedades
@@ -42,11 +43,10 @@
     function sum() {
         console.log(arguments);
         var result = Array.prototype.reduce.call(arguments, function(acumulado, atual){
-            return acumulado + atual;
-        },0);
+            return Number(acumulado) + Number(atual);
+        });
         console.log(result);
     }
-    sum(1,2,3,4,5,6,7,8,9,10,11);
 
     /*
     Mostre no console que a função acima funciona, invocando-a em 3 console.log
@@ -77,13 +77,10 @@
     */
     console.log( '\nFunção que limpa entrada do usuário (somente números):' );
     function justNumbers(receivedString) {
-        return receivedString.replace(/\D/g, '').split('').map(function(item) {
-            return Number(item);
-        }); 
+        return receivedString.replace(/\D+/g, ',').split(',')
     }
     
     console.log(justNumbers.toString());
-    console.log(justNumbers('Pedro Álvares Cabral[A] (Belmonte, 1467 ou 1468 – Santarém, c. 1520) foi um fidalgo, comandante militar, navegador e explorador português'));
 
     /*
     Usando a função acima, faça a limpeza dos valores entrados pelo usuário,
@@ -91,12 +88,11 @@
     */
     console.log( '\nEntrada do usuário limpa. Somente números:' );
     var numbers = justNumbers(userEntry);
-    console.log(numbers);
 
     /*
     Agora com o array de números, utilize a função `sum` para somar todos os
     números desse array e mostre o resultado no console.
     */
     console.log( '\nSomar números entrados pelo usuário:' );
-    console.log(sum.apply(numbers));
+    console.log(sum.apply(sum, numbers));
 })();
