@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Challenge 23</title>
+</head>
+<body>
+<style>
+    .calculator {
+        display: flex;
+        flex-direction: column;
+        width: 500px;
+        align-items: center;
+    }
+    .calculator div, input {
+        margin-bottom: 10px;
+    }
+    input {
+        font-size: 2em;
+    }
+    button {
+        cursor: pointer;
+        font-size: 1.5em;
+    }
+</style>
+   <div class="calculator">
+       <input type="text" value="0" data-js="valor">
+       
+       <div>
+           <button data-js="zero">0</button>
+           <button data-js="um">1</button>
+           <button data-js="dois">2</button>
+           <button data-js="tres">3</button>
+           <button data-js="quatro">4</button>
+           <button data-js="cinco">5</button>
+           <button data-js="seis">6</button>
+           <button data-js="sete">7</button>
+           <button data-js="oito">8</button>
+           <button data-js="nove">9</button>
+       </div>
+
+       <div>
+           <button data-js="soma">+</button>
+           <button data-js="subtracao">-</button>
+           <button data-js="multiplicacao">x</button>
+           <button data-js="divisao">÷</button>
+       </div> 
+          
+       <div>
+           <button data-js="igual">=</button>
+           <button data-js="ce">CE</button>
+       </div>
+   </div>
+    <script src="challenge-23.js"></script>    
+</body>
+</html>
