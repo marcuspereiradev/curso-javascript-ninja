@@ -1,4 +1,4 @@
-(function() {
+(function(win, doc) {
     'use strict';
     /*
     Vamos desenvolver mais um projeto. A ideia é fazer uma mini-calculadora.
@@ -25,4 +25,48 @@
     input;
     - Ao pressionar o botão "CE", o input deve ficar zerado.
     */
-})();
+    var $visor = doc.querySelector('[data-js="visor"]');
+    var $allbtnNumber = doc.querySelectorAll('[data-js="button-number"]');
+    var $btnOpCe = doc.querySelector('[data-js="button-ce"]');
+    var $btnOp = doc.querySelectorAll('[data-js="button-operation"]');
+    
+    //Adicionando os números no visor usando o próprio value dos butões.
+    Array.prototype.map.call($allbtnNumber, function(button) {
+        button.addEventListener('click', handleClickNumber, false);   
+    });
+    $btnOpCe.addEventListener('click', handleClickCE, false);
+    Array.prototype.map.call($btnOp, function(button) {
+        button.addEventListener('click', handleClickOperation, false);  
+    });
+    
+    
+    function handleClickNumber() {
+        $visor.value += this.value;
+        console.log(this.value);
+    }
+    
+    function handleClickCE() {
+        $visor.value = 0;
+    }
+    
+    function handleClickOperation() {
+        $visor.value += this.value;
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+})(window, document);
