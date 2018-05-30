@@ -29,6 +29,7 @@
     var $allbtnNumber = doc.querySelectorAll('[data-js="button-number"]');
     var $btnOpCe = doc.querySelector('[data-js="button-ce"]');
     var $btnOp = doc.querySelectorAll('[data-js="button-operation"]');
+    var $btnigual = doc.querySelector('[data-js="button-igual"]');
     
     //Adicionando os números no visor usando o próprio value dos butões.
     Array.prototype.map.call($allbtnNumber, function(button) {
@@ -38,11 +39,11 @@
     Array.prototype.map.call($btnOp, function(button) {
         button.addEventListener('click', handleClickOperation, false);  
     });
+    $btnigual.addEventListener('click', handleClickEqual, false);
     
     
     function handleClickNumber() {
         $visor.value += this.value;
-        console.log(this.value);
     }
     
     function handleClickCE() {
@@ -50,23 +51,41 @@
     }
     
     function handleClickOperation() {
+        $visor.value = removeLastitemifItIsAnOperation($visor.value);
         $visor.value += this.value;
     }
     
+    function isLastItemAnOperation(number) {
+        var operations = ['+', '-', 'x', '÷'];
+        var lastItem = number.split('').pop();
+        return operations.some(function(opertor){
+            return opertor === lastItem;
+        });
+    }
     
     
+    function removeLastitemifItIsAnOperation(number) {
+        if(isLastItemAnOperation(number)) {
+            return number.slice(0, -1);
+        }
+        return number;
+    }
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    function handleClickEqual() {
+        $visor.value = removeLastitemifItIsAnOperation($visor.value);
+        var allValues = $visor.value.match(/\d+[+x÷-]?/g);
+        $visor.value = allValues.reduce(function(accumulated, actual) {
+            var firstValue = accumulated.slice(0, -1);
+            var operator = accumulated.split('').pop();
+            var lastValue = removeLastitemifItIsAnOperation(actual);
+            var lastOp = isLastItemAnOperation(actual) ? actual.split('').pop() : '';
+            switch(operator) {
+                case '+': return (Number(firstValue) + Number(lastValue)) + lastOp;
+                case '-': return (Number(firstValue) - Number(lastValue)) + lastOp;
+                case 'x': return (Number(firstValue) * Number(lastValue)) + lastOp;
+                case '÷': return (Number(firstValue) / Number(lastValue)) + lastOp;
+            }
+        })
+    }
     
 })(window, document);
